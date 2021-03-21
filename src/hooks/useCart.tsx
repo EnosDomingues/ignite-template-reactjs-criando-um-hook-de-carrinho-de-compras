@@ -46,11 +46,10 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
                 if(item.amount + 1 > productInStock.amount) {
                   toast.error('Quantidade solicitada fora de estoque');
+                }else {
+                  item.amount += 1;
+                  return item;
                 }
-
-                item.amount += 1;
-
-                return item;
               }
               return item;
             });
@@ -109,10 +108,11 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
             if(amount > productInStock.amount) {
               toast.error('Quantidade solicitada fora de estoque');
+            }else {
+              item.amount = amount;
+              return item;
             }
 
-            item.amount = amount;
-            return item;
           }
           return item;
         })
